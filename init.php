@@ -21,13 +21,13 @@ class oneclickpocket extends Plugin {
 	}
 	function save() {
 
-		$pocket_consumer_key = db_escape_string($this->link, $_POST["pocket_consumer_key"]);
+		$pocket_consumer_key = db_escape_string($_POST["pocket_consumer_key"]);
 		$this->host->set($this, "pocket_consumer_key", $pocket_consumer_key);
 		
-		$pocket_access_token = db_escape_string($this->link, $_POST["pocket_access_token"]);
+		$pocket_access_token = db_escape_string( $_POST["pocket_access_token"]);
 		$this->host->set($this, "pocket_access_token", $pocket_access_token);
 				
-		echo "Consumer Key set to<br/> <small>$pocket_consumer_key</small><br/>Access Token set to<br/> <small>$pocket_access_token</small>";
+		echo "Consumer Key set to : <small>$pocket_consumer_key</small>, Access Token set to : <small>$pocket_access_token</small>";
 	}
 
         function api_version() {
@@ -52,8 +52,8 @@ class oneclickpocket extends Plugin {
 	function getInfo() {
 	    	
 		//retrieve Data from the DB
-		$id = db_escape_string($this->link, $_REQUEST['id']);
-		$result = db_query($this->link, "SELECT title, link
+		$id = db_escape_string($_REQUEST['id']);
+		$result = db_query("SELECT title, link
 				FROM ttrss_entries, ttrss_user_entries
 				WHERE id = '$id' AND ref_id = id AND owner_uid = " .$_SESSION['uid']);
 		if (db_num_rows($result) != 0) {
@@ -64,7 +64,6 @@ class oneclickpocket extends Plugin {
 		
 		$consumer_key = $this->host->get($this, "pocket_consumer_key");
 		$pocket_access_token = $this->host->get($this, "pocket_access_token");
-		
 		
 		//Call Pocket API
 		

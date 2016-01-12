@@ -19,12 +19,12 @@
 			onSuccess: function(transport) {
 				var ti = JSON.parse(transport.responseText);
 				if (ti.status=="1") {
-				notify_info("Saved to Pocket:<br/><em>" + ti.title + "</em>");
+				notify_info("Saved to Pocket : <em>" + ti.title + "</em>");
 				
 				btn.src='plugins/oneclickpocket/pocket.png';
 				btn.title='Saved to Pocket';
 				} else {
-				notify_error("<strong>Error saving to Pocket!</strong><br/>("+ti.status+")");}
+				notify_error("<strong>Error saving to Pocket!</strong> : ("+ti.status+")");}
 			} });
 
 	} catch (e) {
